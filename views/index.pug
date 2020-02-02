@@ -1,0 +1,28 @@
+extends layouts/common.pug
+
+block content
+    // Page Header
+    header.masthead(style="background-image: url('img/home-bg.jpg')")
+        .overlay
+        .container
+            .row
+                .col-lg-8.col-md-10.mx-auto
+                    .site-heading
+                        h1 CodeLomDom Blog
+                        span.subheading A Blog by CodeLomDom 
+    .container
+        .row
+            .col-lg-8.col-md-10.mx-auto
+                each post in posts
+                    .post-preview
+                        a(href='/posts/' + post._id)
+                            h2(class="post-title")
+                                span= post.title
+                        p.post-meta Post by
+                            a(href="#")  #{post.username} 
+                            span on #{post.createAt.toDateString()}
+                            
+                .clearfix
+                    a.btn.btn-primary.float-right(href="#") Older Post &rarr;
+
+block foot

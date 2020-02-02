@@ -1,0 +1,36 @@
+extends ../layouts/common.pug
+
+block content
+    header.masthead
+        .overlay
+        .container
+            .row
+                .col-lg-8.col-md-10.mx-auto
+                    .page-heading
+                        h1 Create New Post
+    .container
+        .row
+            .col-md-8.offset-md-2
+                form(action='/posts/store', method='POST', enctype="multipart/form-data")
+                    .control-group
+                        .form-group.floating-label-form-group.controls
+                            label(for="username") Username
+                            input#username.form-control(type='text', name='username', placeholder='Username')
+                    .control-group
+                        .form-group.floating-label-form-group.controls
+                            label(for="title") Title
+                            input#title.form-control(type='text', name='title', placeholder='Title')
+                    .control-group
+                        .form-group.floating-label-form-group.controls
+                            label(for="description") Description
+                            input#description.form-control(type='text', name='description', placeholder='Description')
+                    .control-group
+                        .form-group.floating-label-form-group.controls
+                            label(for="content") Content
+                            textarea#content.form-control(name='content', placeholder='Content ...', cols='30', rows='10')
+                        .form-group.mt-3
+                            label(for="image") Image
+                            input#image.form-control-file(name="image", type="file")
+                        .form-group.my-4.text-center
+                            button.btn.btn-primary Create Post
+block foot
