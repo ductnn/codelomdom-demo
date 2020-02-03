@@ -5,7 +5,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Post = require('./database/models/post');
+
 const postRoute = require('./routes/post.route');
+
+
 
 mongoose.connect(process.env.MONGO_URL, { 
     useNewUrlParser: true,

@@ -11,23 +11,26 @@ block content
     .container
         .row
             .col-md-8.offset-md-2
+                if errors
+                    each error in errors
+                        .alert.alert-danger= error
                 form(action='/posts/store', method='POST', enctype="multipart/form-data")
                     .control-group
                         .form-group.floating-label-form-group.controls
                             label(for="username") Username
-                            input#username.form-control(type='text', name='username', placeholder='Username')
+                            input#username.form-control(type='text', name='username', placeholder='Username', value=values ? values.username : "")
                     .control-group
                         .form-group.floating-label-form-group.controls
                             label(for="title") Title
-                            input#title.form-control(type='text', name='title', placeholder='Title')
+                            input#title.form-control(type='text', name='title', placeholder='Title', value=values ? values.title : "")
                     .control-group
                         .form-group.floating-label-form-group.controls
                             label(for="description") Description
-                            input#description.form-control(type='text', name='description', placeholder='Description')
+                            input#description.form-control(type='text', name='description', placeholder='Description', value=values ? values.description : "")
                     .control-group
                         .form-group.floating-label-form-group.controls
                             label(for="content") Content
-                            textarea#content.form-control(name='content', placeholder='Content ...', cols='30', rows='10')
+                            textarea#content.form-control(name='content', placeholder='Content ...', cols='30', rows='10', value=values ? values.content : "")
                         .form-group.mt-3
                             label(for="image") Image
                             input#image.form-control-file(name="image", type="file")
