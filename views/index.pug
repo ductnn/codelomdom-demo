@@ -2,7 +2,7 @@ extends layouts/common.pug
 
 block content
     // Page Header
-    header.masthead(style="background-image: url('img/home-bg.jpg')")
+    header.masthead(style="background-image: url('/static/img/home-bg.jpg')")
         .overlay
         .container
             .row
@@ -17,7 +17,7 @@ block content
                     .post-preview
                         a(href='/posts/' + post._id)
                             h2(class="post-title")
-                                span= post.title
+                                span= post.title                             
                         p.post-meta Post by
                             a(href="#")  #{post.username} 
                             span on #{post.createAt.toDateString()}

@@ -1,28 +1,33 @@
 const express = require('express');
 const path = require('path');
-const post = require('../database/models/post');
-const fileUpload = require('express-fileupload');
+const multer = require('multer');
+
+const Post = require('../database/models/post');
+const fileUpload = multer({ dest: './public/posts' });
+const controller = require('../controllers/post.controller');
+
 const router = express.Router();
 
 
 
-router.get('/', (req, res) => {
-    res.render('posts/create')
-});
+router.get('/', controller.create);
+router.get('/:id', controller.post);
+router.post('/store', fileUpload.single('image'), controller.store);
 
-router.get('/:id', async (req, res) => {
-    const Post = await post.findById(req.params.id)
-    res.render('posts/post', {
-        Post
-    });
-});
-
-
-router.post('/store', (req, res) => {
-    post.create(req.body, (error, post) => {
-        res.redirect('/')
-    })
-});
+// router.post("/store", (req, res) => {
+//     const {
+//         image
+//     } = req.files
+ 
+//     image.mv(path.resolve(__dirname, 'public/posts', image.name), (error) => {
+//         Post.create({
+//             ...req.body,
+//             image: `/posts/${image.name}`
+//         }, (error, post) => {
+//             res.redirect('/');
+//         });
+//     })
+// });
 
 
 module.exports = router;

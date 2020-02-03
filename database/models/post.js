@@ -7,11 +7,11 @@ const postSchema = new mongoose.Schema({
     username: String,
     image: String,
     createAt: {
-        type: Date,
+        type: Date, 
         default: new Date()
     }
 });
 
-const post = mongoose.model('post', postSchema);
+const Post = mongoose.model('Post', postSchema, 'posts');
 
-module.exports = post;
+module.exports = Post;

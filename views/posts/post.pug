@@ -1,19 +1,19 @@
 extends ../layouts/common.pug
 
 block content
-    header.masthead
+    header.masthead(style="background-image: url('/static/posts/#{post.image}")
         .overlay
         .container
             .row
                 .col-lg-8.col-md-10.mx-auto
                     .post-heading
-                        h1= Post.title 
+                        span= post.title 
                         p.post-meta Post by
-                            a(href="#")  #{Post.username} 
-                            span on #{Post.createAt.toDateString()}
+                            a(href="#") #{post.username} 
+                            span on #{post.createAt.toDateString()}
     article
         .container
             .row
                 .col-lg-8.col-md-10.mx-auto
-                    span= Post.content 
+                    span= post.content 
 block foot

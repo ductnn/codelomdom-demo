@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000;
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const post = require('./database/models/post');
+const Post = require('./database/models/post');
 const postRoute = require('./routes/post.route');
 
 mongoose.connect(process.env.MONGO_URL, { 
@@ -23,7 +23,7 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 app.get('/', async (req, res) => {
-    const posts = await post.find({})
+    const posts = await Post.find({})
     res.render('index', {
         posts
     });
