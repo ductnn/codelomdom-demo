@@ -8,6 +8,6 @@ const userSchema = new mongoose.Schema({
     avatart: String
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema, 'users');
 
 module.exports = User;
