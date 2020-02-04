@@ -19,10 +19,6 @@ const validate = require('../validate/postStore.validate');
 
 const router = express.Router();
 
-
-
-
-
 router.get('/', controller.create);
 router.get('/:id', controller.post);
 router.post('/store', 
@@ -30,6 +26,5 @@ router.post('/store',
     validate.store,
     controller.store
 );
-
 
 module.exports = router;

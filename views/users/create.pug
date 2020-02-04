@@ -1,0 +1,30 @@
+extends ../layouts/common.pug
+
+block content
+    header.masthead
+        .overlay
+        .container
+            .row
+                .col-lg-8.col-md-10.mx-auto
+                    .page-heading
+                        h1 Create A New Account
+        .container
+            .row
+                .col-md-8.offset-md-2
+                    form(action='/users/register', method='POST', enctype='multipart/form-data')
+                        .control-group
+                            .form-group.floating-label-form-group.controls
+                                label Username
+                                input.form-control(type='text', name='username', placeholder='Username')
+                        .control-group
+                            .form-group.floating-label-form-group.controls
+                                label Email
+                                input.form-control(type='email', name='email', placeholder='Email')
+                        .control-group
+                            .form-group.floating-label-form-group.controls
+                                label Password
+                                input.form-control(type='password', name='password', placeholder='Password')
+                        .form-group.my-4.text-center
+                            button.btn.btn-primary Register now 
+
+block foot

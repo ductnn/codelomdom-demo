@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const Post = require('./database/models/post');
 
 const postRoute = require('./routes/post.route');
+const userRoute = require('./routes/user.route');
 
 
 
@@ -33,6 +34,7 @@ app.get('/', async (req, res) => {
 });
 
 app.use('/posts', postRoute);
+app.use('/users', userRoute);
 
 app.listen(port, () => {
     console.log('Server listing on port ' + port);
