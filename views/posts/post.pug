@@ -1,7 +1,7 @@
 extends ../layouts/common.pug
 
 block content
-    header.masthead(style="background-image: url('#{post.image}')")
+    header.masthead(style='background-image: url(/static/'+post.image+')')
         .overlay
         .container
             .row
@@ -9,7 +9,8 @@ block content
                     .post-heading
                         span= post.title 
                         p.post-meta Post by
-                            a(href="#") #{post.username} 
+                            //img(src= '/static/' + post.image)
+                            a(href="#", style="color: blue")  #{post.username} 
                             span on #{post.createAt.toDateString()}
     article
         .container

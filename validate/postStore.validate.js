@@ -1,8 +1,5 @@
 module.exports.store = (req, res, next) => {
     const errors = [];
-    if(!req.body.image){
-        errors.push('image is required')
-    }
 
     if(!req.body.username){
         errors.push('username is required')

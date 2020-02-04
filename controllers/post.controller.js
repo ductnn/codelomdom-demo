@@ -13,9 +13,9 @@ module.exports.post = async (req, res) => {
 };
 
 module.exports.store = (req, res) => {
+    req.body.image = req.file.path.split('/').slice(1).join('/');
     Post.create(req.body, (error, post) => {
-        req.body.image = req.file.path.split('/').slice(1).join('/')
-        console.log(req.body)
+        console.log(req.body.image)
         res.redirect('/')
     });
 };
