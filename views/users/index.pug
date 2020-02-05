@@ -1,7 +1,22 @@
 extends ../layouts/common.pug
 
 block content
-    h1 View Users
-    p
-        b Name 
-        span= user.username
+    header.masthead(style="background-image: url('/static/img/about-bg.jpg')")
+        .overlay
+        .container
+            .row
+                .col-lg-8.col-md-10.mx-auto
+                    .page-heading
+                        h1 About Me
+                        span.subheading This is what I do.
+    // Main Content
+    .container
+        .row
+            .col-lg-8.col-md-10.mx-auto
+                h1 Hello #{user.username}
+                    p= user.username
+                p
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!
+                p
+                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!
+block foot
