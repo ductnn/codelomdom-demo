@@ -1,0 +1,27 @@
+extends ../layouts/common.pug
+
+block content
+    header.masthead(style="background-image: url('/static/img/createUser.jpg')")
+        .overlay
+        .container
+            .row
+                .col-lg-8.col-md-10.mx-auto
+                    .page-heading
+    .container
+        .row
+            .col-md-8.offset-md-2
+                if errors
+                    each error in errors
+                        .alert.alert-danger= error
+                form(action='/auth/login', method='POST')
+                    .control-group
+                        .form-group.floating-label-form-group.controls
+                            label(for="email") Email
+                            input#email.form-control(type='email', name='email', placeholder='Email', value=values ? values.username : "")
+                    .control-group
+                        .form-group.floating-label-form-group.controls
+                            label(for="pwd") Password
+                            input#pwd.form-control(type='password', name='password', placeholder='Password', value=values ? values.username : "")
+                    .form-group.my-4.text-center
+                        button.btn.btn-success Login
+block foot

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const User = require('../database/models/user.model');
+
 
 module.exports.index = async (req, res) => {
     const user = await User.findById(req.params.id);
@@ -13,11 +15,17 @@ module.exports.create = (req, res) => {
 };
 
 module.exports.createUser = (req, res) => {
-    User.create(req.body, (error, user) => {
-        if(error) {
-            return res.redirect('/users/create');
-        }
-        console.log(req.body);
-        res.redirect('/');
+    bcrypt.hash(req.body.password, 10, (error, hash) => {
+        User.create({
+            username: req.body.username,
+            email: req.body.email,
+            password: hash
+        }).then((data) => {
+            if(data){
+                res.redirect('/');
+            }
+            console.log(req.body);       
+        });
     });
+    
 };

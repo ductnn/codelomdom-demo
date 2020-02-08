@@ -4,11 +4,12 @@ const port = process.env.PORT || 3000;
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const expressSession = require('express-session');
 const Post = require('./database/models/post');
 
 const postRoute = require('./routes/post.route');
 const userRoute = require('./routes/user.route');
-
+const authRoute = require('./routes/auth.route');
 
 
 mongoose.connect(process.env.MONGO_URL, { 
@@ -22,6 +23,9 @@ const app = express();
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use('/static', express.static('public'));
+app.use(expressSession({
+    secret: process.env.SESSION_SECRET
+}));
 
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -35,6 +39,7 @@ app.get('/', async (req, res) => {
 
 app.use('/posts', postRoute);
 app.use('/users', userRoute);
+app.use('/auth', authRoute);
 
 app.listen(port, () => {
     console.log('Server listing on port ' + port);

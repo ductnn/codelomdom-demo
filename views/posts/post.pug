@@ -7,14 +7,15 @@ block content
             .row
                 .col-lg-8.col-md-10.mx-auto
                     .post-heading
-                        span= post.title 
-                        p.post-meta Post by
-                            //img(src= '/static/' + post.image)
-                            a(href="#", style="color: blue")  #{post.username} 
-                            span on #{post.createAt.toDateString()}
+                        
     article
         .container
             .row
                 .col-lg-8.col-md-10.mx-auto
+                    strong(style="font-size: 50px")= post.title 
+                    p.post-meta Post by
+                        //img(src= '/static/' + post.image)
+                        a(href="#", style="text-decoration: none; color: #007bff")  #{post.username} 
+                        span on #{post.createAt.toDateString()}
                     span= post.content 
 block foot
