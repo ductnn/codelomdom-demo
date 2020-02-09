@@ -11,6 +11,8 @@ const postRoute = require('./routes/post.route');
 const userRoute = require('./routes/user.route');
 const authRoute = require('./routes/auth.route');
 
+const authMiddleware = require('./middlewares/auth.middlewares');
+
 
 mongoose.connect(process.env.MONGO_URL, { 
     useNewUrlParser: true,
@@ -38,7 +40,7 @@ app.get('/', async (req, res) => {
 });
 
 app.use('/posts', postRoute);
-app.use('/users', userRoute);
+app.use('/users', authMiddleware.requireAuth, userRoute);
 app.use('/auth', authRoute);
 
 app.listen(port, () => {
