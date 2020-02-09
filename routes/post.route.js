@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const multer = require('multer');
 
+const authMiddleware = require('../middlewares/auth.middleware');
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public/posts/')
@@ -19,7 +21,7 @@ const validate = require('../validate/postStore.validate');
 
 const router = express.Router();
 
-router.get('/', controller.create);
+router.get('/', authMiddleware.requireAuth, controller.create);
 router.get('/:id', controller.post);
 router.post('/store', 
     fileUpload.single('image'),
