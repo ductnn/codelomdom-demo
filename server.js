@@ -1,6 +1,14 @@
 require('dotenv').config()
 
+// const staticServer = require('static-server');
+// const server = new staticServer({
+//     rootPath: '.',
+//     port: 3000,
+//     name: 'ductn-server',
+//     host: '192.168.1.5'
+// });
 const port = process.env.PORT || 3000;
+const ngrok = require('ngrok');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -11,8 +19,18 @@ const postRoute = require('./routes/post.route');
 const userRoute = require('./routes/user.route');
 const authRoute = require('./routes/auth.route');
 
-const authMiddleware = require('./middlewares/auth.middlewares');
-
+ngrok.connect({
+    proto : 'http',
+    addr : port
+}, (err, url) => {
+    if (err) {
+        console.error('Error while connecting Ngrok',err);
+        return new Error('Ngrok Failed');
+    } else {
+        console.log('Tunnel Created -> ', url);
+        console.log('Tunnel Inspector ->  http://127.0.0.1:4040');
+    }
+});
 
 mongoose.connect(process.env.MONGO_URL, { 
     useNewUrlParser: true,
@@ -40,7 +58,7 @@ app.get('/', async (req, res) => {
 });
 
 app.use('/posts', postRoute);
-app.use('/users', authMiddleware.requireAuth, userRoute);
+app.use('/users', userRoute);
 app.use('/auth', authRoute);
 
 app.listen(port, () => {
