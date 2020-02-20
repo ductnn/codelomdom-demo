@@ -14,6 +14,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const expressSession = require('express-session');
 const Post = require('./database/models/post');
+const User = require('./database/models/user.model')
 
 const postRoute = require('./routes/post.route');
 const userRoute = require('./routes/user.route');
@@ -52,14 +53,18 @@ app.set('views', './views');
 
 app.get('/', async (req, res) => {
     const posts = await Post.find({})
+    const users = await User.find({})
     res.render('index', {
-        posts
+        posts,
+        users
     });
 });
 
 app.use('/posts', postRoute);
 app.use('/users', userRoute);
 app.use('/auth', authRoute);
+
+
 
 app.listen(port, () => {
     console.log('Server listing on port ' + port);
