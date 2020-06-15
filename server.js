@@ -1,12 +1,5 @@
 require('dotenv').config()
 
-// const staticServer = require('static-server');
-// const server = new staticServer({
-//     rootPath: '.',
-//     port: 3000,
-//     name: 'ductn-server',
-//     host: '192.168.1.5'
-// });
 const port = process.env.PORT || 3000;
 const ngrok = require('ngrok');
 const express = require('express');
