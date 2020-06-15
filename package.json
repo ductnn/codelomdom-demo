@@ -22,7 +22,8 @@
     "multer": "^1.4.2",
     "ngrok": "^3.2.7",
     "pug": "^2.0.4",
-    "startbootstrap-clean-blog": "^5.0.8"
+    "startbootstrap-clean-blog": "^5.0.8",
+    "jquery": ">=3.5.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
