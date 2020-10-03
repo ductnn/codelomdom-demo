@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || PORT_START;
 const ngrok = require('ngrok');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -56,8 +56,6 @@ app.get('/', async (req, res) => {
 app.use('/posts', postRoute);
 app.use('/users', userRoute);
 app.use('/auth', authRoute);
-
-
 
 app.listen(port, () => {
     console.log('Server listing on port ' + port);
